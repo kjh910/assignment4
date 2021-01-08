@@ -14,7 +14,6 @@ import {
 } from './dtos/podcast.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ok } from 'assert';
 
 @Injectable()
 export class PodcastsService {
@@ -83,8 +82,6 @@ export class PodcastsService {
       podcast.episodes = rest.episodes;
     } 
     await this.podcasts.save(podcast);
-    // this.podcasts = this.podcasts.filter((p) => p.id !== id);
-    // this.podcasts.push({ ...podcast, ...rest });
     return { ok };
   }
 
@@ -147,7 +144,6 @@ export class PodcastsService {
     episodeId,
     ...rest
   }: UpdateEpisodeDto): Promise<CoreOutput> {
-    // const { error, ok, episodes } = await this.getEpisodes(podcastId);
     const episode = await this.episode.findOne(episodeId);
     if (!episode) {
       return { ok:false, error:'Not Found Episode' };
