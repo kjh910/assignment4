@@ -19,7 +19,7 @@ export class PodcastOutput extends CoreOutput {
 
 @ObjectType()
 export class EpisodesOutput extends CoreOutput {
-  @Field((type) => [Podcast], { nullable: true })
+  @Field((type) => [Episode], { nullable: true })
   episodes?: Episode[];
 }
 

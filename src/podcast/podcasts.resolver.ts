@@ -39,7 +39,7 @@ export class PodcastsResolver {
   }
 
   @Mutation((returns) => CoreOutput)
-  updatePodcast(@Args('input') updatePodcastDto: UpdatePodcastDto): CoreOutput {
+  updatePodcast(@Args('input') updatePodcastDto: UpdatePodcastDto): Promise<CoreOutput> {
     return this.podcastsService.updatePodcast(updatePodcastDto);
   }
 }
@@ -51,12 +51,12 @@ export class EpisodeResolver {
   @Query((returns) => EpisodesOutput)
   getEpisodes(
     @Args('input') podcastSearchInput: PodcastSearchInput,
-  ): EpisodesOutput {
+  ): Promise<EpisodesOutput> {
     return this.podcastService.getEpisodes(podcastSearchInput.id);
   }
 
   @Mutation((returns) => CoreOutput)
-  createEpisode(@Args('input') createEpisodeDto: CreateEpisodeDto): CoreOutput {
+  createEpisode(@Args('input') createEpisodeDto: CreateEpisodeDto): Promise<CoreOutput> {
     return this.podcastService.createEpisode(createEpisodeDto);
   }
 
@@ -68,7 +68,7 @@ export class EpisodeResolver {
   @Mutation((returns) => CoreOutput)
   deleteEpisode(
     @Args('input') episodesSearchInput: EpisodesSearchInput,
-  ): CoreOutput {
+  ): Promise<CoreOutput> {
     return this.podcastService.deleteEpisode(episodesSearchInput);
   }
 }
